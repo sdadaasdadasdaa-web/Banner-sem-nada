@@ -1,27 +1,14 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <script
-  src="https://cdn.utmify.com.br/scripts/utms/latest.js"
-  data-utmify-prevent-xcod-sck
-  data-utmify-prevent-subids
-  async
-  defer
-></script>
-
-  <script>
-  window.pixelId = "69251f2e83c0b0e4729553f9";
-  var a = document.createElement("script");
-  a.setAttribute("async", "");
-  a.setAttribute("defer", "");
-  a.setAttribute("src", "https://cdn.utmify.com.br/scripts/pixel/pixel.js");
-  document.head.appendChild(a);
-</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Comprar</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Configuracoes do Tailwind para cores e fontes -->
     <script>
         tailwind.config = {
             theme: {
@@ -60,8 +47,10 @@
 </head>
 <body class="bg-brand-bg text-brand-text font-sans pb-[90px] antialiased">
 
+    <!-- Mobile Wrapper (Centraliza no desktop, ocupa tudo no mobile) -->
     <div class="max-w-[414px] mx-auto bg-brand-bg min-h-screen relative shadow-2xl overflow-hidden">
 
+        <!-- HEADER -->
         <header class="h-[56px] bg-white flex items-center px-4 sticky top-0 z-30 border-b border-gray-200">
             <button type="button" onclick="history.back()" class="w-[24px] h-[24px] flex items-center justify-center touch-feedback rounded-full">
                 <i class="ph ph-arrow-left text-[24px] text-brand-text"></i>
@@ -69,26 +58,35 @@
             <h1 class="flex-1 text-center text-lg font-medium pr-[24px]">Comprar</h1>
         </header>
 
+        <!-- MAIN CONTAINER -->
         <main class="px-4 py-3 space-y-3.5">
 
+            <!-- CARD DE ENDERECO -->
             <section class="bg-white rounded-[14px] p-4 shadow-sm touch-feedback cursor-pointer" onclick="openModal('addressModal')">
+                <!-- Linha 1 & 2: Icone + Dados -->
                 <div class="flex items-start justify-between">
                     <div class="flex items-start gap-2.5">
+                        <!-- Icone localizacao -->
                         <i class="ph-fill ph-map-pin text-brand-red text-[22px] mt-0.5"></i>
+                        
                         <div class="flex flex-col">
+                            <!-- Nome e Telefone -->
                             <div class="flex flex-wrap items-baseline gap-x-1.5">
                                 <span id="checkoutCustomerName" class="text-[16px] font-semibold text-brand-text"></span>
                                 <span id="checkoutCustomerPhone" class="text-[14px] font-normal text-brand-sub"></span>
                             </div>
-                            <div class="text-[14px] text-[#666] leading-[1.4] mt-[6px]">
-                                <div id="checkoutCustomerAddressLine1"></div>
-                                <div id="checkoutCustomerAddressLine2"></div>
-                            </div>
+                            <!-- Endereco -->
+                            <div class="text-[14px] text-[#666] leading-[1.4] mt-[6px]"><div id="checkoutCustomerAddressLine1"></div><div id="checkoutCustomerAddressLine2"></div></div>
                         </div>
                     </div>
+                    <!-- Icone seta direita -->
                     <i class="ph ph-caret-right text-gray-300 text-sm mt-1"></i>
                 </div>
+
+                <!-- Divisor -->
                 <div class="h-[1px] bg-[#f0f0f0] my-[14px]"></div>
+
+                <!-- Linha 3: CPF -->
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                         <i class="ph-fill ph-identification-card text-brand-red text-[20px]"></i>
@@ -98,7 +96,9 @@
                 </div>
             </section>
 
+            <!-- CARD DA LOJA E PRODUTO -->
             <section class="bg-white rounded-[12px] shadow-sm overflow-hidden">
+                <!-- Cabecalho da Loja -->
                 <div class="flex items-center gap-2 p-3.5 border-b border-gray-100 touch-feedback cursor-pointer">
                     <span class="bg-brand-red text-white text-[10px] px-[6px] py-[2px] rounded-[6px] font-semibold tracking-wide">
                         Indicado
@@ -106,11 +106,14 @@
                     <h2 id="checkoutShopName" class="text-[14px] font-semibold text-brand-text"></h2>
                     <i class="ph ph-caret-right text-brand-sub ml-auto text-sm"></i>
                 </div>
+
+                <!-- Detalhes do Produto -->
                 <div class="flex gap-3 p-3.5 touch-feedback cursor-pointer bg-gray-50/50">
                     <img id="checkoutProductImage" src="" alt="Produto" class="w-[72px] h-[72px] rounded-md object-cover border border-gray-100 flex-shrink-0">
                     <div class="flex-1 min-w-0 flex flex-col">
                         <h3 id="checkoutProductTitle" class="text-[14px] leading-tight text-brand-text line-clamp-2 text-ellipsis"></h3>
                         <p id="checkoutProductVariant" class="text-[12px] text-brand-sub mt-1"></p>
+                        
                         <div class="flex items-center justify-between mt-auto pt-2">
                             <div class="flex items-baseline gap-1.5">
                                 <span id="checkoutProductCurrentPrice" class="text-[16px] text-brand-red font-semibold"></span>
@@ -120,6 +123,8 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Cupom da Loja -->
                 <div class="flex items-center justify-between p-3.5 border-t border-gray-100 touch-feedback cursor-pointer">
                     <span class="text-[14px] text-brand-text">Cupom da loja</span>
                     <div class="flex items-center gap-1.5">
@@ -127,6 +132,8 @@
                         <i class="ph ph-caret-right text-brand-sub text-sm"></i>
                     </div>
                 </div>
+
+                <!-- Mensagem para o vendedor -->
                 <div class="flex items-center justify-between p-3.5 border-t border-gray-100 touch-feedback cursor-pointer">
                     <span class="text-[14px] text-brand-text">Mensagem para o vendedor:</span>
                     <div class="flex items-center gap-1.5 text-brand-sub">
@@ -136,6 +143,7 @@
                 </div>
             </section>
 
+            <!-- CARD OPCAO DE ENVIO & TOTAL DE ITENS -->
             <section class="bg-white rounded-[12px] shadow-sm overflow-hidden p-3.5 flex flex-col gap-3">
                 <div class="flex items-center justify-between touch-feedback cursor-pointer" onclick="openModal('shippingModal')">
                     <h3 class="text-[14px] font-medium text-brand-text">Opcao de Envio</h3>
@@ -144,6 +152,8 @@
                         <i class="ph ph-caret-right text-sm"></i>
                     </div>
                 </div>
+
+                <!-- Sub-card Selecionado -->
                 <div class="border border-brand-green rounded-[10px] p-3 flex items-center justify-between bg-green-50/30 touch-feedback cursor-pointer" onclick="openModal('shippingModal')">
                     <div class="flex gap-2.5 items-start">
                         <i class="ph-fill ph-check-circle text-brand-green text-[18px] mt-0.5"></i>
@@ -154,13 +164,17 @@
                     </div>
                     <span class="text-[14px] font-medium text-brand-green" id="selectedShippingPrice">Gratis</span>
                 </div>
+
+                <!-- Total de Itens -->
                 <div class="flex items-center justify-between pt-3 mt-1 border-t border-gray-100">
                     <span id="checkoutItemsLabel" class="text-[14px] text-brand-text"></span>
                     <span id="checkoutItemsTotal" class="text-[15px] font-semibold text-brand-red"></span>
                 </div>
             </section>
 
+            <!-- CARD CUPONS E MOEDAS -->
             <section class="bg-white rounded-[12px] shadow-sm overflow-hidden">
+                <!-- Cupom Shopee -->
                 <div class="flex items-center justify-between p-3.5 border-b border-gray-100 touch-feedback cursor-pointer" onclick="openModal('couponModal')">
                     <div class="flex items-center gap-2">
                         <i class="ph ph-ticket text-brand-red text-[20px]"></i>
@@ -171,8 +185,11 @@
                         <i class="ph ph-caret-right text-sm"></i>
                     </div>
                 </div>
+
+                <!-- Moedas -->
                 <div class="flex items-center justify-between p-3.5 touch-feedback cursor-pointer opacity-60">
                     <div class="flex items-center gap-2">
+                        <img src="img/moeda.svg" alt="Moeda" class="w-5 h-5">
                         <span class="text-[14px] text-brand-sub">Sem moedas para aplicar</span>
                         <i class="ph ph-question text-brand-sub text-[16px]"></i>
                     </div>
@@ -182,6 +199,7 @@
                 </div>
             </section>
 
+            <!-- CARD METODOS DE PAGAMENTO -->
             <section class="bg-white rounded-[12px] shadow-sm overflow-hidden p-3.5">
                 <div class="flex items-center justify-between touch-feedback cursor-pointer mb-3">
                     <h3 class="text-[14px] font-medium text-brand-text">Metodos de pagamento</h3>
@@ -190,24 +208,29 @@
                         <i class="ph ph-caret-right text-sm"></i>
                     </div>
                 </div>
+
                 <div class="flex items-center justify-between touch-feedback cursor-pointer">
                     <div class="flex items-center gap-2">
+                        <!-- Icone Pix customizado -->
                         <div class="w-6 h-6 flex items-center justify-center">
                             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" class="w-6 h-6" viewBox="0 0 48 48">
-                                <path fill="#4db6ac" d="M11.9,12h-0.68l8.04-8.04c2.62-2.61,6.86-2.61,9.48,0L36.78,12H36.1c-1.6,0-3.11,0.62-4.24,1.76 l-6.8,6.77c-0.59,0.59-1.53,0.59-2.12,0l-6.8-6.77C15.01,12.62,13.5,12,11.9,12z"></path><path fill="#4db6ac" d="M36.1,36h0.68l-8.04,8.04c-2.62,2.61-6.86,2.61-9.48,0L11.22,36h0.68c1.6,0,3.11-0.62,4.24-1.76 l6.8-6.77c0.59-0.59,1.53-0.59,2.12,0l6.8,6.77C32.99,35.38,34.5,36,36.1,36z"></path><path fill="#4db6ac" d="M44.04,28.74L38.78,34H36.1c-1.07,0-2.07-0.42-2.83-1.17l-6.8-6.78c-1.36-1.36-3.58-1.36-4.94,0 l-6.8,6.78C13.97,33.58,12.97,34,11.9,34H9.22l-5.26-5.26c-2.61-2.62-2.61-6.86,0-9.48L9.22,14h2.68c1.07,0,2.07,0.42,2.83,1.17 l6.8,6.78c0.68,0.68,1.58,1.02,2.47,1.02s1.79-0.34,2.47-1.02l6.8-6.78C34.03,14.42,35.03,14,36.1,14h2.68l5.26,5.26 C46.65,21.88,46.65,26.12,44.04,28.74z"></path>
+                                <path fill="#4db6ac" d="M11.9,12h-0.68l8.04-8.04c2.62-2.61,6.86-2.61,9.48,0L36.78,12H36.1c-1.6,0-3.11,0.62-4.24,1.76	l-6.8,6.77c-0.59,0.59-1.53,0.59-2.12,0l-6.8-6.77C15.01,12.62,13.5,12,11.9,12z"></path><path fill="#4db6ac" d="M36.1,36h0.68l-8.04,8.04c-2.62,2.61-6.86,2.61-9.48,0L11.22,36h0.68c1.6,0,3.11-0.62,4.24-1.76	l6.8-6.77c0.59-0.59,1.53-0.59,2.12,0l6.8,6.77C32.99,35.38,34.5,36,36.1,36z"></path><path fill="#4db6ac" d="M44.04,28.74L38.78,34H36.1c-1.07,0-2.07-0.42-2.83-1.17l-6.8-6.78c-1.36-1.36-3.58-1.36-4.94,0	l-6.8,6.78C13.97,33.58,12.97,34,11.9,34H9.22l-5.26-5.26c-2.61-2.62-2.61-6.86,0-9.48L9.22,14h2.68c1.07,0,2.07,0.42,2.83,1.17	l6.8,6.78c0.68,0.68,1.58,1.02,2.47,1.02s1.79-0.34,2.47-1.02l6.8-6.78C34.03,14.42,35.03,14,36.1,14h2.68l5.26,5.26	C46.65,21.88,46.65,26.12,44.04,28.74z"></path>
                             </svg>
                         </div>
                         <span class="text-[14px] text-brand-text">Pix</span>
                     </div>
+                    <!-- Custom Radio Button -->
                     <div class="w-5 h-5 rounded-full border-[5px] border-brand-red flex items-center justify-center">
                         <div class="w-2.5 h-2.5 bg-brand-red rounded-full"></div>
                     </div>
                 </div>
             </section>
 
+            <!-- Espaco extra para scroll seguro -->
             <div class="h-4"></div>
         </main>
 
+        <!-- BARRA FIXA INFERIOR -->
         <footer class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[414px] h-[72px] bg-white border-t border-gray-200 z-40 flex items-center justify-between px-4">
             <div class="flex flex-col justify-center">
                 <div class="flex items-end gap-1.5">
@@ -222,6 +245,9 @@
             </button>
         </footer>
 
+        <!-- MODAIS -->
+        
+        <!-- Modal Endereco -->
         <div id="addressModal" class="fixed inset-0 z-50 hidden modal-overlay opacity-0 flex items-end sm:items-center justify-center">
             <div class="absolute inset-0 bg-black/50" onclick="closeModal('addressModal')"></div>
             <div class="relative w-full sm:w-[414px] bg-white rounded-t-[16px] sm:rounded-2xl p-5 modal-content translate-y-full pb-8 sm:pb-5 max-h-[90vh] overflow-y-auto">
@@ -229,27 +255,37 @@
                 <h3 class="text-lg font-semibold mb-4 text-brand-text">Editar Endereco</h3>
                 <div class="space-y-3">
                     <input id="inputCustomerName" type="text" placeholder="Nome Completo" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
+                    
                     <div class="flex gap-2">
                         <input id="inputCustomerPhone" type="tel" placeholder="Telefone" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
                         <input id="inputCustomerCpf" type="text" placeholder="CPF" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
                     </div>
+
                     <div class="h-[1px] bg-gray-100 my-1"></div>
+
+                    <!-- Campos de Endereco -->
                     <input type="text" id="inputCep" placeholder="CEP" maxlength="9" oninput="maskCep(this); buscarCep(this.value)" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
+                    
                     <input type="text" id="inputEndereco" placeholder="Endereco (Rua, Av...)" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
+                    
                     <div class="flex gap-2">
                         <input type="text" id="inputNumero" placeholder="Numero" class="w-[100px] p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
                         <input type="text" id="inputComplemento" placeholder="Complemento" class="flex-1 p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
                     </div>
+                    
                     <input type="text" id="inputBairro" placeholder="Bairro" class="w-full p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
+                    
                     <div class="flex gap-2">
                         <input type="text" id="inputCidade" placeholder="Cidade" class="flex-1 p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px]">
                         <input type="text" id="inputUf" placeholder="UF" maxlength="2" class="w-[80px] p-3 border border-gray-200 rounded-lg outline-none focus:border-brand-red transition-colors text-[14px] uppercase">
                     </div>
+
                     <button type="button" onclick="saveCustomerData()" class="w-full bg-brand-red text-white font-medium py-3 rounded-lg mt-2 touch-feedback">Salvar Alteracoes</button>
                 </div>
             </div>
         </div>
 
+        <!-- Modal Opcoes de Envio -->
         <div id="shippingModal" class="fixed inset-0 z-50 hidden modal-overlay opacity-0 flex items-end sm:items-center justify-center">
             <div class="absolute inset-0 bg-black/50" onclick="closeModal('shippingModal')"></div>
             <div class="relative w-full sm:w-[414px] bg-white rounded-t-[16px] sm:rounded-2xl p-5 modal-content translate-y-full pb-8 sm:pb-5">
@@ -266,6 +302,7 @@
                         </div>
                         <span class="text-[15px] font-medium text-brand-green">Gratis</span>
                     </div>
+                    
                     <div class="border border-gray-200 rounded-[10px] p-4 flex items-center justify-between touch-feedback cursor-pointer" onclick="selectShipping('Entrega Rapida', 'Receba entre 5 e 7 de mar', 'R$ 16,91', false)">
                         <div class="flex gap-2.5 items-start">
                             <i class="ph-fill ph-check-circle text-brand-green text-[18px] mt-0.5 hidden check-icon"></i>
@@ -280,6 +317,7 @@
             </div>
         </div>
 
+        <!-- Modal Cupom Shopee -->
         <div id="couponModal" class="fixed inset-0 z-50 hidden modal-overlay opacity-0 flex items-end sm:items-center justify-center">
             <div class="absolute inset-0 bg-black/50" onclick="closeModal('couponModal')"></div>
             <div class="relative w-full sm:w-[414px] bg-white rounded-t-[16px] sm:rounded-2xl p-5 modal-content translate-y-full pb-8 sm:pb-5">
@@ -292,6 +330,7 @@
             </div>
         </div>
 
+        <!-- Loading Modal -->
         <div id="loadingModal" class="fixed inset-0 z-50 hidden modal-overlay opacity-0 flex items-center justify-center">
             <div class="absolute inset-0 bg-black/50"></div>
             <div class="relative bg-white p-6 rounded-2xl flex flex-col items-center justify-center space-y-4 modal-content scale-95 transition-transform duration-300 shadow-xl w-[80%] max-w-[300px]">
@@ -300,6 +339,7 @@
             </div>
         </div>
 
+        <!-- Pix Modal -->
         <div id="pixModal" class="fixed inset-0 z-50 hidden modal-overlay opacity-0 flex items-end sm:items-center justify-center">
             <div class="absolute inset-0 bg-black/50" onclick="closeModal('pixModal')"></div>
             <div class="relative w-full sm:w-[414px] bg-white rounded-t-[16px] sm:rounded-2xl p-6 modal-content translate-y-full pb-8 sm:pb-6 flex flex-col items-center">
@@ -312,7 +352,7 @@
                 <p id="pixTransactionId" class="text-[11px] text-gray-400 mb-4 text-center"></p>
                 
                 <div class="w-full bg-gray-50 border border-gray-200 rounded-xl p-3 mb-5 flex items-center justify-between gap-2 overflow-hidden">
-                    <span class="text-[13px] text-gray-500 font-mono truncate" id="pixCode">00020126580014BR.GOV.BCB.PIX...</span>
+                    <span class="text-[13px] text-gray-500 font-mono truncate" id="pixCode">00020126580014BR.GOV.BCB.PIX0136123e4567-e89b-12d3...</span>
                 </div>
                 
                 <button onclick="copyPix()" class="w-full bg-brand-green text-white font-semibold py-3.5 rounded-xl touch-feedback flex items-center justify-center gap-2 shadow-sm">
@@ -325,6 +365,7 @@
 
     </div>
 
+    <!-- Scripts para controle dos modais -->
     <script>
         const CHECKOUT_SNAPSHOT_KEY = "clone_mobile_checkout_snapshot";
         const CHECKOUT_CUSTOMER_KEY = "clone_mobile_checkout_customer";
@@ -342,48 +383,6 @@
         let currentPixTransactionId = "";
         let pixPollTimer = null;
         let isCreatingPix = false;
-
-        // ==========================================
-        // NOVA FUNÇÃO: WEBHOOK UTMIFY
-        // ==========================================
-        function enviarWebhookUTMify(statusPedido, transactionId) {
-            const customer = readCustomerData();
-            const snapshot = readCheckoutSnapshot();
-            const amount = getCheckoutTotalCents(snapshot) / 100;
-
-            const tokenUTMify = "KkHAMBx8v8oS6zM8JrgnLA5C3GES6w2mDv7c";
-            const urlUtmify = `https://api.utmify.com.br/api/postback?token=${tokenUTMify}`;
-
-            const payload = {
-                status: statusPedido,
-                order_id: transactionId || "PIX-" + Date.now(),
-                total_amount: amount,
-                payment_method: "pix",
-                customer: {
-                    name: customer.name || "Cliente",
-                    phone: customer.phone || "",
-                    document: customer.cpf || ""
-                }
-            };
-
-            fetch(urlUtmify, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            })
-            .then(res => console.log(`[UTMify] Webhook enviado! Status: ${statusPedido}`))
-            .catch(err => console.error("[UTMify] Erro ao enviar webhook:", err));
-
-            if (typeof window.pixelId !== 'undefined') {
-                if (statusPedido === "pending") {
-                    window.dispatchEvent(new CustomEvent('utmify-track', { detail: { event: 'InitiateCheckout' }}));
-                    window.dispatchEvent(new CustomEvent('utmify-track', { detail: { event: 'GeneratePix' }}));
-                } else if (statusPedido === "approved") {
-                    window.dispatchEvent(new CustomEvent('utmify-track', { detail: { event: 'Purchase' }}));
-                }
-            }
-        }
-        // ==========================================
 
         function safeParse(value, fallback) {
             try {
@@ -562,26 +561,15 @@
                     const copyBtnText = document.getElementById("copyBtnText");
                     if (copyBtnText) copyBtnText.textContent = "Pagamento confirmado";
 
-                    // EVENTO DE PIX PAGO NA UTMIFY
-                    enviarWebhookUTMify("approved", transactionId);
-
                     try {
                         localStorage.removeItem(PIX_TRANSACTION_KEY);
                     } catch (error) {}
-
-                    // ==========================================
-                    // REDIRECIONAMENTO PARA O UPSELL AQUI!
-                    // ==========================================
-                    setTimeout(() => {
-                        // Troque esse link pela URL da sua página de Upsell
-                        window.location.href = "https://tenf-sable.vercel.app/"; 
-                    }, 1500); // Aguarda 1.5 segundos (1500ms) e redireciona
-                    // ==========================================
                 }
             } catch (error) {
-                // Mantem polling ativo
+                // Mantem polling ativo em falhas temporarias de rede/API.
             }
         }
+
         function startPixPolling(transactionId) {
             stopPixPolling();
             if (!transactionId) return;
@@ -847,9 +835,6 @@
                     }));
                 } catch (error) {}
 
-                // EVENTO DE PIX GERADO (PENDENTE) NA UTMIFY
-                enviarWebhookUTMify("pending", currentPixTransactionId);
-
                 closeModal("loadingModal");
                 setTimeout(() => {
                     openModal("pixModal");
@@ -949,3 +934,4 @@
     </script>
 </body>
 </html>
+
